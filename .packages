@@ -1,0 +1,14 @@
+aur azuredatastudio-bin
+aur google-chrome
+aur visual-studio-code-bin
+aur fastfetch-git
+pkg curl
+pkg git
+pkg less
+pkg neovim
+pkg shellcheck
+pkg stow
+pkg tmux
+pkg wget
+pkg zsh
+

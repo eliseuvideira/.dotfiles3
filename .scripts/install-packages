@@ -1,0 +1,49 @@
+#!/bin/sh
+
+install_pkgs() {
+  _t1=$(mktemp)
+  _t2=$(mktemp)
+
+  grep ^pkg <"$1" | awk '{print $2}' | sort >"$_t1"
+  pacman -Q | awk '{print $1}' | sort >"$_t2"
+
+  missing="$(comm -23 "$_t1" "$_t2")"
+
+  if [ "$missing" != "" ]; then
+    sudo pacman -Syu
+    # shellcheck disable=SC2086
+    sudo pacman -S --needed $missing
+  fi
+
+  rm "$_t1" "$_t2" 1>/dev/null 2>&1
+}
+
+install_aurs() {
+  if [ ! -d /opt/paru ]; then
+    sudo git clone https://aur.archlinux.org/paru.git /opt/paru
+    sudo chown "$(id -u):$(id -g)" /opt/paru
+    (cd /opt/paru && makepkg -si)
+  fi
+
+  _t1=$(mktemp)
+  _t2=$(mktemp)
+
+  grep ^aur <"$1" | awk '{print $2}' | sort >"$_t1"
+  pacman -Qm | awk '{print $1}' | sort >"$_t2"
+
+  missing="$(comm -23 "$_t1" "$_t2")"
+
+  if [ "$missing" != "" ]; then
+    paru
+    # shellcheck disable=SC2086
+    paru -S $missing
+  fi
+
+  rm "$_t1" "$_t2" 1>/dev/null 2>&1
+}
+
+script_dir="$(realpath "$(dirname "$0")")"
+packages_file="$(realpath "$script_dir/../.packages")"
+
+install_pkgs "$packages_file"
+install_aurs "$packages_file"
