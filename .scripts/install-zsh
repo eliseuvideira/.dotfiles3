@@ -1,0 +1,5 @@
+#!/bin/sh
+export ZSH="$HOME/.config/zsh/oh-my-zsh"
+if [ ! -d "$ZSH" ]; then
+    curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi

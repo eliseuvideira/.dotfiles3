@@ -1,0 +1,16 @@
+#!/bin/sh
+export EDITOR="vim"
+export TERMINAL="konsole"
+if [ -r "/opt/google/chrome/chrome" ]; then
+  export BROWSER="/opt/google/chrome/chrome"
+else
+  export BROWSER="chromium"
+fi
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
+export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/custom"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export PROFILE_LOADED=true
