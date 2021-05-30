@@ -11,4 +11,5 @@ pkg stow
 pkg tmux
 pkg wget
 pkg zsh
-
+pkg openssh
+pkg ntfs-3g

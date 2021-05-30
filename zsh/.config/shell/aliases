@@ -17,4 +17,4 @@ alias sl="ls"
 alias c="clear"
 alias fastfetch="fastfetch --structure Title:Separator:OS:Host:Kernel:Uptime:Packages:Shell:Resolution:DE:WM:WMTheme:Terminal:TerminalFont:CPU:Memory:Disk:Battery:Locale:Break:Colors"
 alias neofetch="fastfetch"
-
+alias yay="paru"
