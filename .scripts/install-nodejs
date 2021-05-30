@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+get_package() {
+  pacman -Q | grep "^$1" | awk '{print $1}'
+}
+
+install_package() {
+  package="$(get_package "$1")"
+  if [ "$package" = "" ]; then
+    sudo pacman -Syu
+    sudo pacman -S "$1"
+  fi
+}
+
+install_nvm() {
+  source "$HOME/.zprofile"
+
+  if [ ! -d "$XDG_CONFIG_HOME/nvm" ]; then
+    PROFILE=/dev/null && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+  fi
+}
+
+install_package nodejs
+install_package yarn
+install_nvm
