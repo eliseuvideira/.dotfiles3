@@ -25,5 +25,6 @@ install_nvm() {
 }
 
 install_package nodejs
+install_package npm
 install_package yarn
 install_nvm
