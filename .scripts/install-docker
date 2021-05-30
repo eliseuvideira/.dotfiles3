@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -e
+
+get_package() {
+  pacman -Q | grep "^$1" | awk '{print $1}'
+}
+
+install_package() {
+  package="$(get_package "$1")"
+  if [ "$package" = "" ]; then
+    sudo pacman -Syu
+    sudo pacman -S "$1"
+  fi
+}
+
+install_docker_compose() {
+  paru
+  paru -S docker-compose-bin
+}
+
+install_ctop() {
+  paru
+  paru -S ctop-bin
+}
+
+install_package docker
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker "$(id -un)"
+
+install_docker_compose
+
+install_ctop
