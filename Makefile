@@ -13,3 +13,11 @@ vim:
 .PHONY: zsh
 zsh:
 	./.scripts/install-zsh && rm ~/.zshrc && stow --no-folding -t ~ zsh
+
+.PHONY: nodejs
+nodejs:
+	./.scripts/install-nodejs
+
+.PHONY: docker
+docker:
+	./.scripts/install-docker
