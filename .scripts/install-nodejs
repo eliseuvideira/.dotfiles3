@@ -15,9 +15,11 @@ install_package() {
 }
 
 install_nvm() {
-  source "$HOME/.zprofile"
+  # shellcheck disable=SC1091
+  . "$HOME/.zprofile"
 
   if [ ! -d "$XDG_CONFIG_HOME/nvm" ]; then
+    # shellcheck disable=SC2034
     PROFILE=/dev/null && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   fi
 }
