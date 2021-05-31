@@ -21,3 +21,7 @@ nodejs:
 .PHONY: docker
 docker:
 	./.scripts/install-docker
+
+.PHONY: konsole
+konsole:
+	stow --no-folding -t ~ konsole
